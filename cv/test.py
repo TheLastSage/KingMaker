@@ -1,5 +1,7 @@
 import numpy as np
 import cv2
+from IPython import embed
+import random
 
 cascade_path = "/media/windows/dev/linux-dev/opencv-3.0.0/data/haarcascades/"
 
@@ -17,10 +19,15 @@ def main():
 def find_face(img):
 	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 	faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+
+	cropped_faces = [img[y:y+h, x:x+w] for (x,y,w,h) in faces]
+	# create_training_data(cropped_faces)
+
 	for (x,y,w,h) in faces:
 	    img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
 	    roi_gray = gray[y:y+h, x:x+w]
 	    roi_color = img[y:y+h, x:x+w]
+	    cropped_faces.append((roi_gray, roi_color))
 	    eyes = eye_cascade.detectMultiScale(roi_gray)
 	    for (ex,ey,ew,eh) in eyes:
 	        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
@@ -30,6 +37,11 @@ def find_face(img):
 	# cv2.waitKey(0)
 	# cv2.destroyAllWindows()
 
+
+
+def create_training_data(list_of_face_tuples):
+	for img_color in list_of_face_tuples:
+		cv2.imwrite('test/test_img_' + str(random.randint(1,100)) +'.jpg', img_color)
 
 def webcam_start():
 	cap = cv2.VideoCapture(0)
