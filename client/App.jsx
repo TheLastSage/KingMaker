@@ -12,8 +12,8 @@ App = React.createClass({
   // },
   getItems() {    // Temporary
     return [
-      { _id: 1, text: "Bag of food" },
-      { _id: 2, text: "Rice" }
+      { _id: 1, text: "Bag of food", cost: 54},
+      { _id: 2, text: "Rice", cost: 14 }
     ];
   },
 
@@ -39,16 +39,20 @@ App = React.createClass({
   render() {
     return (
       <div className="container">
-        <header>
-          <h1>Todo List</h1>
-          <AccountsUIWrapper />
-        </header>
- 
-        <h1>Hello World.</h1>
-          
-        <ul>
-          {this.renderItems()}
-        </ul>
+          <header>
+            <h1>Todo List</h1>
+            <AccountsUIWrapper />
+          </header>
+   
+        <div className="container-inner">
+          <h1>Hello {Meteor.user().name}</h1>
+
+          <div class="item-wrapper">
+            <ul class="item-ul">
+              {this.renderItems()}
+            </ul>
+          </div>
+        </div>
       </div>
       );
   }

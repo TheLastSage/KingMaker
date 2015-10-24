@@ -13,11 +13,18 @@ Item = React.createClass( {
 		const itemName = this.props.item.text
 
 		return (
-			<li class="{this.props.item.name}">
+			<li class="{this.props.item.name} item-li">
 				<div className="item">
-					<p className="itemName">
-						{this.props.item.text}
-					</p>
+					<div className="item-left item-elem">
+						<p className="itemName">
+							{this.props.item.text}
+						</p>
+					</div>
+					<div className="item-right item-elem">
+						<p className="itemCost">
+							${this.props.item.cost}.00
+						</p>
+					</div>
 				</div>
 			</li>
 		);
