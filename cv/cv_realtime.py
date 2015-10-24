@@ -11,7 +11,6 @@ clf = ml.load_model('random_forest_clf.model')
 cascade_path = "/media/windows/dev/linux-dev/opencv-3.0.0/data/haarcascades/"
 
 face_cascade = cv2.CascadeClassifier(cascade_path + 'haarcascade_frontalface_default.xml')
-eye_cascade = cv2.CascadeClassifier(cascade_path + 'haarcascade_eye.xml')
 
 
 
@@ -42,10 +41,7 @@ def find_face(img):
 	    roi_gray = gray[y:y+h, x:x+w]
 	    roi_color = img[y:y+h, x:x+w]
 	    cropped_faces.append((roi_gray, roi_color))
-	    eyes = eye_cascade.detectMultiScale(roi_gray)
-	    for (ex,ey,ew,eh) in eyes:
-	        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-
+	    
 	return img
 	# cv2.imshow('img',img)
 	# cv2.waitKey(0)
