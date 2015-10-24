@@ -4,12 +4,12 @@ Item = React.createClass( {
 		item: React.PropTypes.object.isRequired
 	},
 
+
 	deleteThisItem() {
 		Items.remove( this.props.item._id );
 	},
 
 	render() {
-
 		const itemName = this.props.item.text
 
 		return (

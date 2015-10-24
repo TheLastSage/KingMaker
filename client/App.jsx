@@ -73,7 +73,8 @@ App = React.createClass({
           <div className="item-wrapper">
             <ul className="item-ul">
               {this.renderItems()}
-              <li class="{this.props.item.name} item-li">
+              {/* Calculates the total cost */}
+              <li className="item-li">
               <div className="item">
                 <div className="item-left item-elem bold">
                   <p className="itemName">
@@ -81,8 +82,8 @@ App = React.createClass({
                   </p>
                 </div>
                 <div className="item-right item-elem bold">
-                  <p className="itemCost" id="totalCost">
-                    ${this.state.totalCost}
+                  <p className="totalCost" id="totalCost">
+                    ${this.state.totalCost / 2}
                   </p>
                 </div>
               </div>
