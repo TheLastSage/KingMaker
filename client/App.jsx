@@ -41,24 +41,27 @@ App = React.createClass({
   //     return <Task key={task._id} task={task} />;
   //   });
   // },
- 
-  render() {
-    return (
-      <div className="container">
-          <header>
-            <div className="nav">
-              <div className="nav-inner">
-                <div className="inline">
-                  <h2>TeamName</h2>
-                </div>
-                <div className="inline right">
-                  <AccountsUIWrapper />
-                </div>
+  renderNavBar() {
+    return ( 
+     <header>
+          <div className="nav">
+            <div className="nav-inner">
+              <div className="inline">
+                <h2>TeamName</h2>
+              </div>
+              <div className="inline right">
+                <AccountsUIWrapper />
               </div>
             </div>
-          </header>
-   
-        <div className="container-inner">
+          </div>
+        </header>
+      );
+
+  },
+
+  renderMainPage() {
+    return(
+   <div className="container-inner">
           <h1>Hello</h1>
 
           <div className="camera">
@@ -87,7 +90,15 @@ App = React.createClass({
             </ul>
           </div>
         </div>
-      </div>
-      );
+    );
+  },
+ 
+  render() {
+    return (
+      <div className="container">
+        {this.renderNavBar()}
+        {this.renderMainPage()}
+       </div>
+    );
   }
 });
