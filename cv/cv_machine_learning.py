@@ -1,8 +1,10 @@
 import os
 from sklearn import svm
 from sklearn.decomposition import PCA
+from sklearn.ensemble import RandomForestClassifier
 import cv2
 import numpy as np
+import pickle
 
 def main():
 	training_y_values = ['yixin', 'vignesh']
@@ -25,14 +27,12 @@ def get_data(dir_path, y_values):
 		for filename in os.listdir(dir_path + y_value + '/'):
 			img = cv2.imread(dir_path + y_value + '/' + filename)
 			
-			# cropped = img[1:150, 1:150]
+			cropped = img[1:150, 1:150]
 
-			gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-			cropped = gray[1:150, 1:150]
+			# gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+			# cropped = gray[1:150, 1:150]
 
-			pca_reduced = PCA_reduction(cropped, 5)
-
-			flattened = pca_reduced.flatten()
+			flattened = cropped.flatten()
 
 			X.append(flattened)
 			y.append(y_value)
@@ -48,7 +48,8 @@ def PCA_reduction(X, components):
 
 def train_model(test_data):
 	X,y = test_data
-	clf = svm.SVC()
+	# clf = svm.SVC()
+	clf = RandomForestClassifier(n_estimators=10)
 	clf.fit(X,y)
 	return clf
 
@@ -65,7 +66,7 @@ def validate_model(clf, test_data):
 	print("Percent incorrect: " + str(numIncorrect/(1.0*len(X))))
 
 def save_model(classifier, filename):
-	pickle.dump(classifier, filename)	
+	pickle.dump(classifier, open(filename, 'w'))	
 
 def load_model(filename):
 	return pickle.load(open(filename))

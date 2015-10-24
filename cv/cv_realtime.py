@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 from IPython import embed
 import random
+import train_model
 
 cascade_path = "/media/windows/dev/linux-dev/opencv-3.0.0/data/haarcascades/"
 
