@@ -1,9 +1,8 @@
 import os
 from sklearn import svm
+from sklearn.decomposition import PCA
 import cv2
-
-if __name__ == 'main':
-	main()
+import numpy as np
 
 def main():
 	training_y_values = ['yixin', 'vignesh']
@@ -25,21 +24,27 @@ def get_data(dir_path, y_values):
 	for y_value in y_values:
 		for filename in os.listdir(dir_path + y_value + '/'):
 			img = cv2.imread(dir_path + y_value + '/' + filename)
-			gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-
-			cropped = gray[1:150, 1:150]
+			
 			# cropped = img[1:150, 1:150]
 
-			# cv2.imshow('img', cropped)
-			# cv2.waitKey(0)
-			# cv2.destroyAllWindows()
+			gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+			cropped = gray[1:150, 1:150]
 
-			flattened = [item for sublist in cropped for item in sublist]
+			pca_reduced = PCA_reduction(cropped, 5)
+
+			flattened = pca_reduced.flatten()
+
 			X.append(flattened)
 			y.append(y_value)
 
 
 	return (X,y)
+
+def PCA_reduction(X, components):
+	pca = PCA(n_components=components)
+	X_reduced = pca.fit_transform(X)
+	# print(pca.explained_variance_ratio_)
+	return X_reduced
 
 def train_model(test_data):
 	X,y = test_data
@@ -65,3 +70,6 @@ def save_model(classifier, filename):
 def load_model(filename):
 	return pickle.load(open(filename))
 
+
+if __name__ == '__main__':
+	main()
