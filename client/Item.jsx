@@ -13,7 +13,7 @@ Item = React.createClass( {
 		const itemName = this.props.item.text
 
 		return (
-			<li class="{this.props.item.name} item-li">
+			<li className="{this.props.item.name} item-li">
 				<div className="item">
 					<div className="item-left item-elem">
 						<p className="itemName">

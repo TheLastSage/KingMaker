@@ -9,13 +9,6 @@ App = React.createClass({
     }
   },
 
-  // getTasks() {
-  //   return [
-  //     { _id: 1, text: "This is task 1" },
-  //     { _id: 2, text: "This is task 2" },
-  //     { _id: 3, text: "This is task 3" }
-  //   ];
-  // },
   getItems() {    // Temporary
     return [
       { _id: 1, text: "JOHN CENA", cost: 999},
@@ -23,9 +16,9 @@ App = React.createClass({
       { _id: 3, text: "Bag of food", cost: 54},
       { _id: 4, text: "Bag of food", cost: 54},
       { _id: 5, text: "Bag of food", cost: 54},
-      { _id: 6, text: "Bag of food", cost: 54},,
-      { _id: 7, text: "Bag of food", cost: 54},,
-      { _id: 8, text: "Bag of food", cost: 54},,
+      { _id: 6, text: "Bag of food", cost: 54},
+      { _id: 7, text: "Bag of food", cost: 54},
+      { _id: 8, text: "Bag of food", cost: 54},
       { _id: 9, text: "Bag of food", cost: 54},
       { _id: 10, text: "Rice", cost: 14 }
     ];
@@ -57,7 +50,7 @@ App = React.createClass({
               <div className="inline">
                 <h2>TeamName</h2>
               </div>
-              <div className="inline right">
+              <div className="inline">
                 <AccountsUIWrapper />
               </div>
             </div>
