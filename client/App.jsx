@@ -18,8 +18,16 @@ App = React.createClass({
   // },
   getItems() {    // Temporary
     return [
-      { _id: 1, text: "Bag of food", cost: 54},
-      { _id: 2, text: "Rice", cost: 14 }
+      { _id: 1, text: "JOHN CENA", cost: 999},
+      { _id: 2, text: "Bag of food", cost: 54},
+      { _id: 3, text: "Bag of food", cost: 54},
+      { _id: 4, text: "Bag of food", cost: 54},
+      { _id: 5, text: "Bag of food", cost: 54},
+      { _id: 6, text: "Bag of food", cost: 54},,
+      { _id: 7, text: "Bag of food", cost: 54},,
+      { _id: 8, text: "Bag of food", cost: 54},,
+      { _id: 9, text: "Bag of food", cost: 54},
+      { _id: 10, text: "Rice", cost: 14 }
     ];
   },
 
@@ -62,20 +70,39 @@ App = React.createClass({
   renderMainPage() {
     return(
    <div className="container-inner">
-          <h1>Hello</h1>
-
-          <div className="camera">
-            <div className="camera-inner-message">
-              <p>Camera stuff goes here</p>
+          <div className="camera-wrapper">
+            <div className="item" id="camera-header">
+                <div className="item-elem bold">
+                  <h2 className="itemName">
+                    Camera Feed
+                  </h2>
+                </div>
+              </div>
+            <div className="camera inline">
+              <div className="camera-inner-message">
+                <p>Camera stuff goes here</p>
+              </div>
             </div>
           </div>
 
-          <div className="item-wrapper">
+          <div className="item-wrapper inline">
+             <div className="item" id="items-header">
+                <div className="item-elem bold">
+                  <h2 className="itemName">
+                    Items
+                  </h2>
+                </div>
+              </div>
             <ul className="item-ul">
               {this.renderItems()}
               {/* Calculates the total cost */}
               <li className="item-li">
-              <div className="item">
+              
+            </li>
+            </ul>
+
+          </div>
+            <div className="item" id="total">
                 <div className="item-left item-elem bold">
                   <p className="itemName">
                     Total Cost:
@@ -87,9 +114,13 @@ App = React.createClass({
                   </p>
                 </div>
               </div>
-            </li>
-            </ul>
-          </div>
+              <div className="item" id="payform">
+                <div className="item-elem bold">
+                  <p className="itemName">
+                    Pay
+                  </p>
+                </div>
+              </div>
         </div>
     );
   },
