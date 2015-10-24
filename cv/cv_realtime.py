@@ -6,11 +6,13 @@ import train_model
 
 import cv_machine_learning as ml
 
-clf = ml.load_model('random_forest_clf.model')
+clf = ml.load_model('trained_classifiers/random_forest_clf.model')
 
-cascade_path = "/media/windows/dev/linux-dev/opencv-3.0.0/data/haarcascades/"
+cascade_path = "trained_classifiers/"
 
 face_cascade = cv2.CascadeClassifier(cascade_path + 'haarcascade_frontalface_default.xml')
+
+banana_cascade = cv2.CascadeClassifier(cascade_path + 'banana_classifier.xml')
 
 
 
@@ -22,6 +24,9 @@ def main():
 
 def find_face(img):
 	gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+	# Faces
+
 	faces = face_cascade.detectMultiScale(gray, 1.3, 5)
 
 	cropped_faces = [img[y:y+h, x:x+w] for (x,y,w,h) in faces]
@@ -34,14 +39,24 @@ def find_face(img):
 			print('Predicted face:')
 			print(clf.predict(flattened))
 		except:
-			print('Error predicting feature')
+			pass
+			# print('Error predicting face')
 
 	for (x,y,w,h) in faces:
 	    img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
 	    roi_gray = gray[y:y+h, x:x+w]
 	    roi_color = img[y:y+h, x:x+w]
 	    cropped_faces.append((roi_gray, roi_color))
-	    
+
+    # Bananas
+
+	bananas = banana_cascade.detectMultiScale(gray, 1.3, 5)
+	for (x,y,w,h) in bananas:
+		img = cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 2)
+		try:
+			print('Found a banana')
+		except:
+			pass
 	return img
 	# cv2.imshow('img',img)
 	# cv2.waitKey(0)
