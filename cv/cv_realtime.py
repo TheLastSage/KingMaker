@@ -4,6 +4,10 @@ from IPython import embed
 import random
 import train_model
 
+import cv_machine_learning as ml
+
+clf = ml.load_model('random_forest_clf.model')
+
 cascade_path = "/media/windows/dev/linux-dev/opencv-3.0.0/data/haarcascades/"
 
 face_cascade = cv2.CascadeClassifier(cascade_path + 'haarcascade_frontalface_default.xml')
@@ -23,6 +27,15 @@ def find_face(img):
 
 	cropped_faces = [img[y:y+h, x:x+w] for (x,y,w,h) in faces]
 	# create_training_data(cropped_faces)
+
+	for face in cropped_faces:
+		doubly_cropped_face = face[1:150, 1:150]
+		flattened = doubly_cropped_face.flatten()
+		try:
+			print('Predicted face:')
+			print(clf.predict(flattened))
+		except:
+			print('Error predicting feature')
 
 	for (x,y,w,h) in faces:
 	    img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
