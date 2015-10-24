@@ -1,5 +1,8 @@
 // App component - represents the whole app
 App = React.createClass({
+
+  mixins: [ReactMeteorData],
+
   // getTasks() {
   //   return [
   //     { _id: 1, text: "This is task 1" },
@@ -7,6 +10,25 @@ App = React.createClass({
   //     { _id: 3, text: "This is task 3" }
   //   ];
   // },
+  getItems() {    // Temporary
+    return [
+      { _id: 1, text: "Bag of food" },
+      { _id: 2, text: "Rice" }
+    ];
+  },
+
+  getMeteorData() {
+    return {
+      items: Items.find({}).fetch(),
+      currentUser: Meteor.user(),
+    };
+  },
+
+  renderItems() {
+    return this.getItems().map((item) => {
+      return <Item key={item._id} item={item} />;
+    });
+  },
  
   // renderTasks() {
   //   return this.getTasks().map((task) => {
@@ -22,8 +44,12 @@ App = React.createClass({
           <AccountsUIWrapper />
         </header>
  
-        Hello World.
+        <h1>Hello World.</h1>
+          
+        <ul>
+          {this.renderItems()}
+        </ul>
       </div>
-    );
+      );
   }
 });

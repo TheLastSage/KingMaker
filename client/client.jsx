@@ -1,3 +1,6 @@
+// Item collection
+Items = new Mongo.Collection("items");
+
 if (Meteor.isClient) {
   // This code is executed on the client only
 
