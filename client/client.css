@@ -1,7 +1,13 @@
 /* CSS declarations go here */
+
 * {
+	font-family: Segoe UI;
 	padding: 0;
 	margin: 0;
+	line-height: 1.4;
+}
+h1, h2, h3, h4, .nav {
+	color: #3d0099;
 }
 a {
 	text-decoration: none;
@@ -10,8 +16,13 @@ li {
 	list-style-type: none;
 }
 .container-inner {
-	max-width: 800px;
+	max-width: 700px;
 	margin: auto;
+}
+.camera {
+	width: 100%;
+	height: 400px;
+	background-color: #e6e6e6;
 }
 
 .item-right {
@@ -21,9 +32,35 @@ li {
 	width: 100%;
 	border-bottom: 1px solid #e6e6e6;
 }
+.inline {
+	display: inline-block;
+}
+.right {
+	float: right;
+}
+.nav {
+	width: 100%;
+	color: #3d0099;
+	border-bottom: 1px solid #e6e6e6;
+}
+.nav-inner {
+	max-width: 800px;
+	margin: auto;
+	line-height:40px;
+}
 .item-elem {
 	padding: 10px;
 	line-height: 30px;
 	font-size: 20px;
 	display: inline-block;
+}
+
+.footer {
+	border-top: 1px solid #e6e6e6;
+	margin-top: 20px;
+
+	text-align: center;
+}
+.bold {
+	font-weight: 700;
 }

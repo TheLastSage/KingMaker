@@ -22,7 +22,7 @@ Item = React.createClass( {
 					</div>
 					<div className="item-right item-elem">
 						<p className="itemCost">
-							${this.props.item.cost}.00
+							${this.props.item.cost}
 						</p>
 					</div>
 				</div>
