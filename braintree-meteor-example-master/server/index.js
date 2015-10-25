@@ -3,17 +3,18 @@ Router.route('/inputStream', {where: 'server'})
     this.response.end('get request\n');
   })
   .post(function () {
-    console.log(this.request.body);
-    var passed = "failed";
-    Meteor.call('createTransaction', this.request.body, function (err, result) {
-      console.log(result.amount);
-    });
-    this.response.end(passed);
+    var data = this.request.body;
+    data.time = new Date();
+    recentPersonData.push(data);
   });
 
 var itemCosts = {"banana": 30, "apple": 20, "orange": 10};
 
 var gateway;
+
+var transactions = [];
+
+var recentPersonData = [];
 
 Meteor.startup(function () {
   var braintree = Meteor.npmRequire('braintree');
@@ -24,6 +25,39 @@ Meteor.startup(function () {
     merchantId: Meteor.settings.BT_MERCHANT_ID
   });
 });
+
+var currUser = null;
+
+Meteor.setInterval(function(){
+  var time = new Date();
+  recentPersonData = recentPersonData.filter(function(x) {
+    return ((time - x.time)/1000 < 10);
+  });
+
+  var counts = {};
+  var max = null;
+  var maxCount = 0;
+  for (var i=0; i<recentPersonData.length; i++) {
+    var curr = recentPersonData[i].person;
+    if !(curr in counts):
+      counts[curr] = 0;
+    counts[curr] += 1;
+    if counts[curr] > maxCount {
+      max = curr;
+      maxCount = counts[curr];
+    }
+  } 
+  var newUser = max;
+  if (currUser!=newUser) {
+    currUser = newUser;
+    var newTransaction = {
+      time: new Date(), 
+      person: currUser,
+      itemPurchases = []
+    };
+    transaction.push(newTransaction);
+  }
+}), 1000;
 
 Meteor.methods({
   getClientToken: function (clientId) {
