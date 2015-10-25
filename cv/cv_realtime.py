@@ -6,7 +6,7 @@ import train_model
 
 import cv_machine_learning as ml
 
-clf = ml.load_model('trained_classifiers/random_forest_clf.model')
+clf = ml.load_model('people_classifier.model')
 
 cascade_path = "trained_classifiers/"
 
@@ -34,7 +34,8 @@ def find_face(img):
 
 	for face in cropped_faces:
 		doubly_cropped_face = face[1:150, 1:150]
-		flattened = doubly_cropped_face.flatten()
+		resized = cv2.resize(doubly_cropped_face, (150,150))
+		flattened = resized.flatten()
 		try:
 			print('Predicted face:')
 			print(clf.predict(flattened))
@@ -50,13 +51,13 @@ def find_face(img):
 
     # Bananas
 
-	bananas = banana_cascade.detectMultiScale(gray, 1.3, 5)
-	for (x,y,w,h) in bananas:
-		img = cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 2)
-		try:
-			print('Found a banana')
-		except:
-			pass
+	# bananas = banana_cascade.detectMultiScale(gray, 1.3, 5)
+	# for (x,y,w,h) in bananas:
+	# 	img = cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 2)
+	# 	try:
+	# 		print('Found a banana')
+	# 	except:
+	# 		pass
 	return img
 	# cv2.imshow('img',img)
 	# cv2.waitKey(0)

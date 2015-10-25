@@ -75,7 +75,7 @@ def validate_model(clf, test_data):
 	print("Percent incorrect: " + str(numIncorrect/(1.0*len(X))))
 
 def save_model(classifier, filename):
-	pickle.dump(classifier, open(filename, 'a'))	
+	pickle.dump(classifier, open(filename, 'w'))	
 
 def load_model(filename):
 	return pickle.load(open(filename))
