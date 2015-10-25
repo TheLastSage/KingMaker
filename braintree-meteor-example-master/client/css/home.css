@@ -27,7 +27,7 @@
   color: #ffffff;
 }
 
-.about{
+.about, .tech{
   text-align: center;
 }
 
@@ -35,9 +35,11 @@
   width: 900px;
   margin: auto;
   text-align:center;
+  vertical-align: top;
   margin-bottom: 200px;
 }
 .box {
+  top: 0;
   width: 250px;
   margin: 10px;
   display: inline-block;
@@ -84,7 +86,8 @@
 }
 
 .footer {
+  border-top: 1px solid #e6e6e6;
   margin-top: 20px;
-
+  background-color: #E8E5E2;
   text-align: center;
 }
