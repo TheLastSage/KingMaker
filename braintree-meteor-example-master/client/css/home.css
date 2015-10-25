@@ -40,7 +40,7 @@ p {
 }
 .home-page {
   width: 100%;
-  height: 600px;
+  height: 480px;
   background: linear-gradient( rgba(57, 66, 78,0.5), rgba(57, 66, 78,0.5)), url(http://i.ytimg.com/vi/uOR9czYDToE/maxresdefault.jpg) no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -74,7 +74,7 @@ p {
   vertical-align: top;
   margin-bottom: 200px;
 }
-#create-account {
+.green-button {
   background-color:#2ec866 !important;
 }
 .textbox {
@@ -157,10 +157,10 @@ p {
 .step-wrapper {
   width: 100%;
   /*background-color: rgb(57, 66, 78);*/
-  background: linear-gradient( rgba( 57, 66, 78, 1), rgba( 57, 66, 78, 0));
+  background: linear-gradient( rgba( 57, 66, 78, 1), rgba( 57, 66, 78, 0.6));
   text-align: center;
   /*background-color: #2ec866;*/
-  height: 350px;
+  /*height: 350px;*/
   border-top: 2px solid #2ec866;
 
 }
@@ -191,13 +191,14 @@ p {
   font-size: 20px !important; 
 }
 .step:hover {
-   background-color: #747b83;
+  background: linear-gradient( rgba(57, 66, 78,0.7), rgba(57, 66, 78,0.2));
  
   transition-property: all;
   transition-duration: .5s;
 }
 .row {
-  margin-top: -140px;
+  /*margin-top: -140px;*/
+  margin-top: 10px;
 }
 .row p {
   font-size: 22px;
@@ -210,6 +211,7 @@ p {
   text-align: center;
   color: white;
   padding-top: 20px;
+  padding-bottom: 10px;
 }
 .footer p {
   text-align: center;
@@ -217,4 +219,7 @@ p {
 }
 .footer a {
   color: inherit;
+}
+.fullpage {
+  height: 390px;
 }
