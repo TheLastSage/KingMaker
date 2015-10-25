@@ -58,30 +58,22 @@ Meteor.setInterval(function(){
     }
   } 
   var newUser = max;
-  // console.log("this is the new user: " + newUser)
-  if (currUser!=null && newUser == null) {
-    var newTransaction = {
-      time: new Date(), 
-      person: currUser,
-      itemPurchases : [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
-    };
-    transactions.push(newTransaction);
 
-    var data = {};
-
-    data["ident"] = tempIDs[currUser];
-    data["items"] = newTransaction.itemPurchases;
-
-    // console.log(data.ident);
-    // console.log(data.items);
-    
-    Meteor.call("createTransaction", data, function (err, result) {
-      console.log(err);
-    });
-
+  if (currUser!=newUser && maxCount > 3) {
     currUser = newUser;
-  } else if (currUser!=newUser) {
-    currUser = newUser;
+    if (currUser != null && typeof newUser != 'undefined') {
+      var newTransaction = {
+        time: new Date(), 
+        person: currUser,
+        itemPurchases: [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
+      };
+      transactions.push(newTransaction);
+      data["ident"] = tempIDs[currUser];
+      data["items"] = newTransaction.itemPurchases;
+      Meteor.call("createTransaction", data, function (err, result) {
+        console.log(err);
+      });
+    }
   }
 }, 1000);
 
