@@ -13,6 +13,8 @@ Router.route('/inputStream', {where: 'server'})
 
 var itemCosts = {"banana": 30, "apple": 20, "orange": 10};
 
+var transactions = {"Test1": ["latte"], "Test2": ["cappucino", "latte"]};
+
 var gateway;
 
 Meteor.startup(function () {

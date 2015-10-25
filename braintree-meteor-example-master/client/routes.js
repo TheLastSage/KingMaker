@@ -10,6 +10,12 @@ Router.route('/confirmation', function () {
   name: 'confirmation'
 });
 
+Router.route('/transactions', function () {
+  this.render('transactions');
+},{
+  name: 'transactions'
+});
+
 // Router.map(function() {
 // 	this.route('inputStream', {
 // 	where: 'server',
