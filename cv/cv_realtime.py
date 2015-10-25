@@ -3,6 +3,7 @@ import cv2
 from IPython import embed
 import random
 import train_model
+import requests, time
 
 import cv_machine_learning as ml
 
@@ -63,7 +64,7 @@ def find_face(img):
 	# 		print('Found a banana')
 	# 	except:
 	# 		pass
-	return img
+	return img, prediction
 	# cv2.imshow('img',img)
 	# cv2.waitKey(0)
 	# cv2.destroyAllWindows()
@@ -74,6 +75,11 @@ def create_training_data(list_of_face_tuples):
 	for img_color in list_of_face_tuples:
 		cv2.imwrite('test/test_img_' + str(random.randint(1,100)) +'.jpg', img_color)
 
+def curr_time():
+	return int(time.time())
+
+import threading
+prediction = None
 def webcam_start():
 	cap = cv2.VideoCapture(0)
 	while(True):
@@ -81,10 +87,11 @@ def webcam_start():
 	    ret, frame = cap.read()
 	    # Our operations on the frame come here
 	    # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
-	    gray_found_face = find_face(frame)
+	    global prediction
+	    gray_found_face, prediction = find_face(frame)
 	    # Display the resulting frame
 	    cv2.imshow('frame',gray_found_face)
+
 	    if cv2.waitKey(1) & 0xFF == ord('q'):
 	        break
 
@@ -92,6 +99,18 @@ def webcam_start():
 	cap.release()
 	cv2.destroyAllWindows()
 
+def send_info():
+	time = curr_time()
+	global prediction
+	while True:
+		if prediction and curr_time() > time:
+			print(prediction)
+			time = curr_time()
+			r = requests.post("http://money2020.meteor.com/inputStream",
+			data = {"person": prediction[0]})	
+
+t = threading.Thread(name='sending_info', target=send_info)
+t.start()
 
 if __name__ == "__main__":
     main()
