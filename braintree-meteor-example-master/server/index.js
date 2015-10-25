@@ -80,6 +80,9 @@ Meteor.setInterval(function(){
     Meteor.call("createTransaction", data, function (err, result) {
       console.log(err);
     });
+    Meteor.call("renderATransaction", data, function(err, result){
+      console.log(err);
+    });
 
     currUser = newUser;
   } else if (currUser!=newUser) {
@@ -104,6 +107,16 @@ Meteor.methods({
       document.getElementById("tha-list").innerHTML+=output;
     };
 
+  },
+
+  renderATransaction: function(transaction){
+    var output = '';
+    output += '<li class="item-li"><div class="item"><div class="item-left item-elem"><p class="itemName">';
+    output+=transaction["ident"]; 
+    output+='</p></div><div class="item-right item-elem"><p class="itemCost">';
+    output+=transactions["items"];
+    output+='</p></div></div></li>';
+    document.getElementById("tha-list").innerHTML+=output;
   },
 
   getClientToken: function (clientId) {
