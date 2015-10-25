@@ -119,7 +119,7 @@ def send_info():
 		if prediction and curr_time() > time:
 			# print(prediction)
 			time = curr_time()
-			r = requests.post("http://money2020.meteor.com/inputStream",
+			r = requests.post("http://kingmaker.meteor.com/inputStream",
 			data = {"person": prediction[0]})	
 
 t = threading.Thread(name='sending_info', target=send_info)
