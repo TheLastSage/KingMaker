@@ -9,17 +9,26 @@ Router.route('/inputStream', {where: 'server'})
     this.response.end('send more\n');
   });
 
-var itemCosts = {"latte": 5.50, "cappucino": 3.75, "mocha": 4.20};
-
+var itemCosts = {"latte": 5.50, "banana": 1, "water bottle": 2, "cappucino": 3.75, "mocha": 4.20};
 var itemList = ["latte", "cappucino", "mocha"];
-
 var tempIDs = {"vignesh": 20681010, "yixin": 87630990};
 
 // var transactions = {"Test1": ["latte"], "Test2": ["cappucino", "latte"]};
 
 var gateway;
 
-var transactions = [];
+var transactions = [
+
+  {
+    'person':'Joe',
+    'itemList':['banana', 'water bottle']
+  },
+  {
+    'person':'Joe',
+    'itemList':['banana', 'water bottle']
+  }
+
+];
 
 var recentPersonData = [];
 
@@ -67,6 +76,7 @@ Meteor.setInterval(function(){
       person: currUser,
       itemPurchases : [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
     };
+    console.log('New transaction is' + newTransaction);
     transactions.push(newTransaction);
 
     var data = {};
@@ -76,7 +86,7 @@ Meteor.setInterval(function(){
 
     // console.log(data.ident);
     // console.log(data.items);
-    
+
     Meteor.call("createTransaction", data, function (err, result) {
       console.log(err);
     });
@@ -94,30 +104,38 @@ Meteor.methods({
   getTransactions: function () {
     return transactions;
   },
+
   renderTransactions: function(){
     var output = '';
+    console.log("fdsf");
     for (i=0; i<transactions.length; i++){
       key = i;
       console.log(key);
       output += '<li className="item-li"><div class="item"><div class="item-left item-elem"><p class="itemName">';
-      output+=key; 
+      output+=transactions[i]['person']; 
       output+='</p></div><div class="item-right item-elem"><p class="itemCost">';
-      output+=transactions[key];
+      output+=transactions[i]['itemList'];
       output+='</p></div></div></li>';
-      document.getElementById("tha-list").innerHTML+=output;
+      // document.getElementById("tha-list").innerHTML+=output;
     };
+    console.log("renderTransactions");
+    console.log(output);
+    return output;
 
   },
-
+  // VINCET
   renderATransaction: function(transaction){
     var output = '';
     output += '<li class="item-li"><div class="item"><div class="item-left item-elem"><p class="itemName">';
     output+=transaction["ident"]; 
     output+='</p></div><div class="item-right item-elem"><p class="itemCost">';
-    output+=transactions["items"];
+    output+=transaction["items"];
     output+='</p></div></div></li>';
-    document.getElementById("tha-list").innerHTML+=output;
+    console.log(output);
+    return output;
+    // document.getElementById("tha-list").innerHTML+=output;
   },
+
 
   getClientToken: function (clientId) {
     var generateToken = Meteor.wrapAsync(gateway.clientToken.generate, gateway.clientToken);
@@ -171,3 +189,7 @@ Meteor.methods({
     });
   }
 });
+
+// AYYLMAO = Meteor.call("renderATransaction", {'ident':'Vincent', 'items':'Dog'}, function(err, result){
+//       if (err) console.log(err);
+// });

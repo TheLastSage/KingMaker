@@ -75,8 +75,16 @@ Template.home.rendered = function () {
   });
 };
 
-Template.transactions.rendered = function(){
-  Meteor.call('renderTransactions', function(err, result){
+$('#transactionid').ready(function(){
+  console.log('temp.trans.render')
+  var stuff = Meteor.call('renderTransactions', function (err, result){
     if (err) console.log(err);
+    if (result || stuff) {
+      console.log("result");
+      console.log(result);
+      console.log(stuff);
+      $( '#tha-list' ).html( $( '#tha-list' ).html() + result);
+      document.getElementById("tha-list").innerHtml += result;
+    }
   });
-}
+});
