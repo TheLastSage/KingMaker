@@ -1,106 +1,148 @@
 <head>
-  <title>Braintree + Meteor</title>
+  <title>SmilePay</title>
 </head>
 
 <body>
   <header class="app-header">
-    <div class="row">
-      <h1><small>Braintree + Meteor</small></h1>
-      <ul class="columns small-12 inline-list">
-        <li>
-          <a href="https://developers.braintreepayments.com/javascript+node/start/overview" target="_blank">Official Developer Documentation</a>
-        </li>
-        <li>
-          <a href="http://stackoverflow.com/questions/tagged/braintree" target="_blank">#braintree on StackOverflow</a>
-        </li>
-      </ul>
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="inline">
+          SmilePay
+        </div>
+        <div class="inline">
+          Login
+        </div>
+        <div class="inline">
+          Register
+        </div>
+      </div>
     </div>
   </header>
 </body>
 
 <template name="home">
-  <div class="payment-form {{paymentFormStatusClass}}">
-    <div class="row">
-      <div class="overlay">
-        <h1 class="overlay__message">
-          Processing...
-        </h1>
+  <div class="container-inner">
+    <div class="payment-form {{paymentFormStatusClass}}">
+      <div class="row">
+        <div class="overlay">
+          <h1 class="overlay__message">
+            Processing...
+          </h1>
+        </div>
+      </div>
+
+      <div class="row">
+        <center>
+          <h3>Introducing the quickest and most advanced way to shop.</h3>
+        </center>
+
+          <div class="landingImg">
+            <img src="http://www.notebookcheck.net/fileadmin/_processed_/csm_macbookpro_15_leopard_04_070ebf656e.jpg" />
+          </div>
+
+        <hr>
+
+        <div class="about">
+          <h3>Why is SmilePay the future?</h3>
+          <div class="about-blurb">
+            Inspired by the rise of digital currencies, SmilePay seeks to integrate the security and convenience of PayPal with the experience of in-store shopping, the best of both worlds. Before, it was impossible to walk into a store, shop your heart out, and just walk out. With SmilePay, all you have to do is look at a camera and you will have paid. Shopping has never been faster. 
+            <br>
+            <div class="box-wrapper">
+              <div class="box">
+                <h4>Shop.</h4>
+                <img src="http://i.imgur.com/H9FRjsM.png" />
+                <br>
+                <p>
+                  You can focus on your shopping while we'll worry about how you'll pay.
+                </p>
+              </div>
+              <div class="box">
+                <h4>Smile.</h4>
+                <img src="http://i.imgur.com/uGctoRH.png" />
+                <br>
+                <p>
+                  Whether you like shopping or not, you will experience a much more streamlined process. 
+                </p>
+              </div>
+              <div class="box">
+                <h4>Pay.</h4>
+                <img src="http://i.imgur.com/1OO2cOR.png" />
+                <br>
+                <p>
+                  PayPal's seller protection policy ensures a transaction that is secure for the customer and fair for the merchant.
+                </p>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="tech">
+            <h3>How does it work?</h3>
+              Our custom computer vision system optimizes facial recognition while maintaining high levels of accuracy of object detection. We integrate with BrainTree API to securely access credit-card information, making it possible to process payments near instantly. Our backend is built to deal with large amounts of image data required for recognition without compromising processing speed for payments.
+          </div>
+        </div>
+
+        <hr>
+
+        <form id="checkout" method="post" action="/checkout">
+
+          <div class="braintree">
+            <center>
+              <h3>Register now for the ultimate shopping experience.</h3>
+            </center>
+            <h4>Details</h4>
+              <div class="row">
+                <label for="firstName" class="columns small-12 large-6">
+                  <input type="text" name="firstName" required placeholder="First Name">
+                </label>
+
+                <label for="lastName" class="columns small-12 large-6 ">
+                  <input type="text" name="lastName" required placeholder="Last Name">
+                </label>
+          </div>
+            <div class="row">
+              <div id="dropin" class="columns small-12"></div>
+            </div>
+
+            <div class="row">
+              <div class="columns small-12">
+                <p>
+                  <strong>Test Credit Card Number:</strong> 4111 1111 1111 1111
+                </p>
+                <p>
+                  <strong>Expiration:</strong> (any future dated expiration e.g. 09/16)
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="columns small-12">
+                <button type="submit">Create Your Account</button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
 
-    <div class="row">
-      <h2>Checkout</h2>
-
-      <hr>
-
-      <form id="checkout" method="post" action="/checkout">
-        <h3>Details</h3>
-        <div class="row">
-          <label for="firstName" class="columns small-12 large-6">
-            First Name
-            <input type="text" name="firstName" required>
-          </label>
-
-          <label for="lastName" class="columns small-12 large-6 ">
-            Last Name
-            <input type="text" name="lastName" required>
-          </label>
-        </div>
-       <!--  <div class="row">
-          <label for="tshirt" class="columns small-12 large-6 last">
-            T shirt size
-            <select name="tshirt">
-              <option value="small">small</option>
-              <option value="medium">medium</option>
-              <option value="large">large</option>
-            </select>
-          </label>
-
-          <label for="quantity" class="columns small-12 large-6">
-            Quantity:
-            <select name="quantity">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-          </label>
-        </div> -->
-
-        <h3>Payment</h3>
-        <div class="row">
-          <div class="columns small-12">
-            <p>
-              <strong>Test Credit Card Number:</strong> 4111 1111 1111 1111 <a href="https://developers.braintreepayments.com/ios+ruby/reference/general/testing#credit-card-numbers" target="_blank">(documentation)</a>
-            </p>
-            <p>
-              <strong>Expiration:</strong> (any future dated expiration e.g. 09/16)
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div id="dropin" class="columns small-12"></div>
-        </div>
-
-        <div class="row">
-          <div class="columns small-12">
-            <button type="submit">Make Your Account</button>
-          </div>
-        </div>
-      </form>
+    <div class="footer">
+      <p>SmilePay 2015 | By YL, VM, RK, RL, VL at Money20/20</p>
+      <div>Icons made by <a href="http://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>  
     </div>
   </div>
 </template>
 
 <template name="confirmation">
-  <div class="row">
-    <h2>Order Complete</h2>
-    <h1>Thank you!</h1>
-     {{#linkTo route="home"}}
-       Take me back! I want to buy more stuff!
-     {{/linkTo}}
+  <div class="container-inner">
+    <div class="row">
+      <h2>Thank you for registering with the VIP Club!</h2>
+       <a href="http://localhost:3000">
+         Return to home.
+       </a>
+    </div>
+
+    <div class="footer">
+      <p>SmilePay 2015 | By YL, VM, RK, RL, VL at Money20/20</p>  
+      <div>Icons made by <a href="http://www.flaticon.com/authors/zurb" title="Zurb">Zurb</a>, <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+    </div>
   </div>
 </template>

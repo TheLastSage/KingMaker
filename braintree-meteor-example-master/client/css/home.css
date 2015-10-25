@@ -1,9 +1,63 @@
 /* CSS declarations go here */
+* {
+  font-family: Segoe UI, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.nav {
+  top: 0;
+  width: 100%;
+  color: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  position: fixed;
+  z-index: 999;
+  background-color: #001A57;
+}
+.nav-inner {
+  margin: auto;
+  max-width: 1100px;
+  line-height:35px;
+  color: #ffffff;
+}
+
+.inline {
+  display: inline-block;
+  color: #ffffff;
+}
+
+.about, .tech{
+  text-align: center;
+}
+
+.boxes-wrapper {
+  width: 900px;
+  margin: auto;
+  text-align:center;
+  vertical-align: top;
+  margin-bottom: 200px;
+}
+.box {
+  top: 0;
+  width: 250px;
+  margin: 10px;
+  display: inline-block;
+}
+.box p {
+  font-size: 18px;
+  line-height:25px;
+}
+
+.container-inner{
+  position: relative;
+  top: 75px;
+}
+
 .overlay {
   position: absolute;
   z-index: 1000;
   width:100%;
-  top: 0;
   right:0 ;
   bottom: 0;
   left: 0;
@@ -22,4 +76,18 @@
   position: fixed;
   top: 50%;
   left: 50%;
+}
+
+.braintree {
+  padding: 10px;
+}
+
+.landingImg{
+}
+
+.footer {
+  border-top: 1px solid #e6e6e6;
+  margin-top: 20px;
+  background-color: #E8E5E2;
+  text-align: center;
 }
