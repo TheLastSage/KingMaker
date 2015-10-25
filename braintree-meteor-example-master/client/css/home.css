@@ -1,0 +1,225 @@
+/* CSS declarations go here */
+* {
+  font-family: Segoe UI Light, Segoe UI, Helvetica, sans-serif !important;
+  padding: 0;
+  margin: 0;
+  line-height: 1.4;
+  color: rgb(57, 66, 78);
+}
+a {
+  color: inherit;
+}
+p {
+  font-size: 18px !important;
+}
+h1 {
+  text-decoration: none;
+  font-weight: normal;
+}
+h1, h2, h3, h4, p {
+  color: inherit !important;
+}
+p {
+  text-align: left;
+}
+.nav {
+  top: 0;
+  width: 100%;
+  color: #fff;
+  border-bottom: 3px solid #2ec866;
+  position: fixed;
+  z-index: 999;
+  background-color: rgb(57, 66, 78);
+  line-height: 40px;
+  padding: 10px 0px 10px  0px;
+}
+.nav-inner {
+  margin: auto;
+  max-width: 1000px;
+  /*line-height:35??px;*/
+}
+.home-page {
+  width: 100%;
+  height: 480px;
+  background: linear-gradient( rgba(57, 66, 78,0.5), rgba(57, 66, 78,0.5)), url(http://i.ytimg.com/vi/uOR9czYDToE/maxresdefault.jpg) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: -50px;
+  color: white !important;
+}
+.page-inner {
+    margin: auto;
+    max-width: 1000px;
+    color: white;
+    text-align: left;
+    padding-top: 260px;
+}
+.class {
+  color: white;
+}
+.inline {
+  display: inline-block;
+}
+
+.about, .tech{
+  text-align: center;
+}
+
+.boxes-wrapper {
+  width: 900px;
+  margin: auto;
+  text-align:center;
+  vertical-align: top;
+  margin-bottom: 200px;
+}
+.green-button {
+  background-color:#2ec866 !important;
+}
+.textbox {
+  width: 46%;
+  text-align: left;
+  display: inline-block;
+}
+.about {
+  text-align: center;
+  margin: auto;
+}
+
+.about-text {
+  margin-right: 2%;
+}
+.tech {
+  margin-left: 2%;
+}
+.box {
+  top: 0;
+  width: 250px;
+  margin: 10px;
+  display: inline-block;
+}
+.box p {
+  font-size: 18px;
+  line-height:25px;
+}
+
+.container-inner{
+  position: relative;
+  top: 75px;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 1000;
+  width:100%;
+  right:0 ;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(1,1,1, 0.6);
+
+  display:none;
+
+}
+.nav-header {
+  font-size: 32px;
+}
+.nav-right {
+  float: right;
+  line-height: 40px;
+  color: #fff;
+}
+.space {
+  margin-right: 0px;
+}
+
+.payment-form__is-submitting .overlay {
+  display:block;
+}
+
+.overlay__message {
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+.white {
+  color: white !important;
+}
+
+.braintree {
+  padding: 10px;
+}
+
+.landingImg{
+}
+.step-wrapper {
+  width: 100%;
+  /*background-color: rgb(57, 66, 78);*/
+  background: linear-gradient( rgba( 57, 66, 78, 1), rgba( 57, 66, 78, 0.6));
+  text-align: center;
+  /*background-color: #2ec866;*/
+  /*height: 350px;*/
+  border-top: 2px solid #2ec866;
+
+}
+.step-inner {
+  max-width: 1230px;
+  margin: auto;
+}
+
+.step {
+  display: inline-block;
+  margin: 0;
+  width: 30.6%;
+  color: white !important;
+  /*background-color: rgb(57, 66, 78);*/
+  line-height: 40px;
+  /*height: 250px;*/
+  padding: 10px;
+ /* border-left: 1px solid #2ec866;
+  border-right: 1px solid #2ec866;*/
+  margin: 0;
+  transition-property: all;
+  transition-duration: .5s;
+}
+.step p {
+  text-align: center;
+}
+.largep {
+  font-size: 20px !important; 
+}
+.step:hover {
+  background: linear-gradient( rgba(57, 66, 78,0.7), rgba(57, 66, 78,0.2));
+ 
+  transition-property: all;
+  transition-duration: .5s;
+}
+.row {
+  /*margin-top: -140px;*/
+  margin-top: 10px;
+}
+.row p {
+  font-size: 22px;
+  line-height: 1.7;
+}
+
+.footer {
+  margin-top: 20px;
+  background-color:  rgba( 57, 66, 78, 1);
+  text-align: center;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.footer p {
+  text-align: center;
+  color: white;
+}
+.footer a {
+  color: inherit;
+}
+.fullpage {
+  height: 390px;
+}

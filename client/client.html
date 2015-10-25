@@ -1,14 +1,21 @@
 <head>
   <title>client</title>
+  <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 </head>
 
 <body>
   <h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+	<form id="checkout" method="post" action="/checkout">
+		<div id="payment-form">AAA</div>
+		<input type="submit" value="Create an Account">
+	</form>
 </body>
 
 <template name="hello">
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
+
+
+
