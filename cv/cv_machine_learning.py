@@ -7,14 +7,23 @@ import numpy as np
 import pickle
 
 def main():
-	training_y_values = ['yixin', 'vignesh']
-	training_data = get_data('training/', training_y_values)
+	# training_y_values = ['yixin', 'vignesh']
+	# training_data = get_data('training/', training_y_values)
 
-	testing_y_values = ['yixin', 'vignesh']
-	testing_data = get_data('testing/', testing_y_values)
+	# testing_y_values = ['yixin', 'vignesh']
+	# testing_data = get_data('testing/', testing_y_values)
 
-	clf = train_model(training_data)
-	validate_model(clf, testing_data)
+	# training_y_values = ['bottle_positive', 'bottle_negative']
+	# training_data = get_data('training/', training_y_values)
+	
+	# testing_y_values = ['bottle_positive', 'bottle_negative']
+	# testing_data = get_data('testing/', testing_y_values)
+
+	# clf = train_model(training_data)
+	# validate_model(clf, testing_data)
+
+	# save_model(clf, 'trained_classifiers/bottle_classifier_clf.model')
+	pass
 
 
 # Save and load the model
@@ -66,7 +75,7 @@ def validate_model(clf, test_data):
 	print("Percent incorrect: " + str(numIncorrect/(1.0*len(X))))
 
 def save_model(classifier, filename):
-	pickle.dump(classifier, open(filename, 'w'))	
+	pickle.dump(classifier, open(filename, 'a'))	
 
 def load_model(filename):
 	return pickle.load(open(filename))
