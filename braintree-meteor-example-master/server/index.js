@@ -39,10 +39,11 @@ Meteor.setInterval(function(){
   var maxCount = 0;
   for (var i=0; i<recentPersonData.length; i++) {
     var curr = recentPersonData[i].person;
-    if !(curr in counts):
+    if (!(curr in counts)) {
       counts[curr] = 0;
+    }
     counts[curr] += 1;
-    if counts[curr] > maxCount {
+    if (counts[curr] > maxCount) {
       max = curr;
       maxCount = counts[curr];
     }
@@ -53,13 +54,16 @@ Meteor.setInterval(function(){
     var newTransaction = {
       time: new Date(), 
       person: currUser,
-      itemPurchases = []
+      itemPurchases : []
     };
     transaction.push(newTransaction);
   }
-}), 1000;
+}, 1000);
 
 Meteor.methods({
+  getTransactions: function () {
+    return transactions;
+  },
   getClientToken: function (clientId) {
     var generateToken = Meteor.wrapAsync(gateway.clientToken.generate, gateway.clientToken);
     var options = {};
