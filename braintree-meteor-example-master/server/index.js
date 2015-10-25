@@ -59,7 +59,11 @@ Meteor.setInterval(function(){
   } 
   var newUser = max;
 
-  if (currUser!=newUser && maxCount > 3) {
+  console.log("The new user: " + newUser);
+  console.log("The curr user: " + currUser);
+  if (newUser == null) {
+    currUser = newUser;
+  } else if (currUser!=newUser && maxCount > 3) {
     currUser = newUser;
     if (currUser != null && typeof newUser != 'undefined') {
       var newTransaction = {
@@ -68,8 +72,14 @@ Meteor.setInterval(function(){
         itemPurchases: [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
       };
       transactions.push(newTransaction);
+
+      var data = {};
       data["ident"] = tempIDs[currUser];
       data["items"] = newTransaction.itemPurchases;
+
+      console.log(data.ident);
+      console.log(data.items);
+
       Meteor.call("createTransaction", data, function (err, result) {
         console.log(err);
       });
