@@ -32,16 +32,21 @@ def find_face(img):
 	cropped_faces = [img[y:y+h, x:x+w] for (x,y,w,h) in faces]
 	# create_training_data(cropped_faces)
 
+	prediction = None
+
 	for face in cropped_faces:
 		doubly_cropped_face = face[1:150, 1:150]
 		resized = cv2.resize(doubly_cropped_face, (150,150))
 		flattened = resized.flatten()
 		try:
-			print('Predicted face:')
-			print(clf.predict(flattened))
+			# print('Predicted face:')
+			prediction = clf.predict(flattened)
+			# print(prediction)
 		except:
 			pass
 			# print('Error predicting face')
+	if prediction:
+		img = cv2.putText(img, prediction[0], (20,100), cv2.FONT_HERSHEY_SIMPLEX, 2, 255, 3)
 
 	for (x,y,w,h) in faces:
 	    img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
@@ -74,7 +79,6 @@ def webcam_start():
 	while(True):
 	    # Capture frame-by-frame
 	    ret, frame = cap.read()
-
 	    # Our operations on the frame come here
 	    # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
