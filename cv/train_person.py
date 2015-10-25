@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 import random
-import train_model
+# import train_model
 import os
 from IPython import embed
 import cv_machine_learning as ml
