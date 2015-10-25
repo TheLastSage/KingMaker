@@ -1,4 +1,5 @@
-// App component - represents the whole app
+
+
 App = React.createClass({
 
   mixins: [ReactMeteorData],
@@ -8,6 +9,9 @@ App = React.createClass({
       totalCost:0
     }
   },
+
+  // There are pages: homepage, signuppage, 
+  // signinpage, receipt/confirm page, mainpage
 
   getItems() {    // Temporary
     return [
@@ -37,11 +41,7 @@ App = React.createClass({
       return <Item key={item._id} item={item} />;
     });
   },
-  // renderTasks() {
-  //   return this.getTasks().map((task) => {
-  //     return <Task key={task._id} task={task} />;
-  //   });
-  // },
+
   renderNavBar() {
     return ( 
      <header>
@@ -57,7 +57,6 @@ App = React.createClass({
           </div>
         </header>
       );
-
   },
 
   renderMainPage() {
@@ -119,11 +118,21 @@ App = React.createClass({
   },
  
   render() {
-    return (
-      <div className="container">
-        {this.renderNavBar()}
-        {this.renderMainPage()}
-       </div>
-    );
+      var route = window.location.pathname
+      if (route === "/home") {
+        return (
+          <div className="container">
+            {this.renderNavBar()}
+            {this.renderMainPage()}
+           </div>
+        );
+      }
+      else if (route === "/") {
+        return (
+          <div className="container">
+          </div>
+        )
+      }
+     
   }
 });
