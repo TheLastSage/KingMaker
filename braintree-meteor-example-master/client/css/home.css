@@ -152,8 +152,6 @@ p {
   padding: 10px;
 }
 
-.landingImg{
-}
 .step-wrapper {
   width: 100%;
   /*background-color: rgb(57, 66, 78);*/
@@ -223,3 +221,37 @@ p {
 .fullpage {
   height: 390px;
 }
+
+.item {
+  width: 100%;
+  border-bottom: 1px solid #e6e6e6;
+  z-index: 50;
+}
+li.item-li {
+  margin-left: 3px;
+}
+li.item-li:hover {
+  border-left: 3px solid #3d0099;
+  margin-left: 0px;
+  color: #3d0099;
+}
+.item-elem {
+  padding: 10px;
+  line-height: 30px;
+  font-size: 20px;
+  display: inline-block;
+ }
+
+ .item-right{
+  float:right;
+ }
+
+ #items-header{
+  border-left: 1px solid #e6e6e6;
+  margin-left: -1px;
+  border-bottom: 1px solid #e6e6e6;
+ }
+ #items-header {
+  margin-right: -2px;
+  border-right: 1px solid #e6e6e6;
+ }

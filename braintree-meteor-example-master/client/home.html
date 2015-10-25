@@ -49,6 +49,7 @@
               <h4 class="white">
                 Say goodbye to checkout lines.
               </h4>
+              {{result}}
             </div>
             <div class="inline gif-wrapper">
               <img style="margin-left: 100px; margin-top: -140px;  border: 4px solid rgb(57, 66, 78)" width="400" height="350" src="http://liawesomesaucer.github.io/host/facial_rec.gif" />
@@ -199,17 +200,32 @@
 <template name="transactions">
   <div class="container-inner">
     <div class="fullpage">
-      <div class="row" style="padding-top: 80px">
 
-        <h2>Recent Transactions</h2>
-        <br>
-          <div class="row">
-              <div class="columns small-12">
-                <a href="/"><button href="/" class="green-button">Return to home</button></a>
-              </div>
+      <div class="row">
+      <h2>Recent Transactions</h2>
+      <br>
+            <!-- <Item key=1 item=socks /> -->
+      <ul class="item-ul" id="tha-list">
+        <li class="stuff item-li">
+          <div class="item">
+            <div class="item-left item-elem">
+              <p class="itemName"> Sample Field 1
+              </p>
             </div>
-      </div>
+            <div class="item-right item-elem">
+              <p class="itemCost">
+                Sample Field 2
+              </p>
+            </div>
+          </div>
+        </li>
+      </ul>
+        
+    <div class="columns small-12">
+      <a href="/"><button href="/" class="green-button">Return to home</button></a>
     </div>
+    </div>
+  </div>
 
     <div class="footer">
       <p>SmilePay 2015 | By YL, VM, RK, RL, VL at Money20/20</p>  

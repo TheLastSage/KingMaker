@@ -43,9 +43,24 @@ function initializeBraintree (clientToken) {
   isBraintreeInitialized = true;
 }
 
+Template.home.events = {
+  'click input': function() {
+    Meteor.call('getTransactions', function(err, response) {
+      Session.set('transactions', response);
+    });
+  }
+};
+
+Template.home.result = function() {
+  return Session.get('transactions') || '';
+}
+
 Template.home.helpers({
   paymentFormStatusClass: function () {
     return Session.get('paymentFormStatus') ? 'payment-form__is-submitting' : '';
+  },
+  getCurrentTransactions: function () {
+    return Meteor.call('getTransactions');
   }
 });
 
@@ -59,3 +74,9 @@ Template.home.rendered = function () {
     initializeBraintree(clientToken);
   });
 };
+
+Template.transactions.rendered = function(){
+  Meteor.call('renderTransactions', function(err, result){
+    if (err) console.log(err);
+  });
+}
