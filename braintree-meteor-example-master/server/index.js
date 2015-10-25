@@ -6,9 +6,14 @@ Router.route('/inputStream', {where: 'server'})
     var data = this.request.body;
     data.time = new Date();
     recentPersonData.push(data);
+    this.response.end('send more\n');
   });
 
-var itemCosts = {"banana": 30, "apple": 20, "orange": 10};
+var itemCosts = {"latte": 5.50, "cappucino": 3.75, "mocha": 4.20};
+
+var itemList = ["latte", "cappucino", "mocha"];
+
+var tempIDs = {"vignesh": 20681010, "yixin": 87630990};
 
 var gateway;
 
@@ -27,6 +32,10 @@ Meteor.startup(function () {
 });
 
 var currUser = null;
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 Meteor.setInterval(function(){
   var time = new Date();
@@ -49,14 +58,30 @@ Meteor.setInterval(function(){
     }
   } 
   var newUser = max;
-  if (currUser!=newUser) {
-    currUser = newUser;
+  // console.log("this is the new user: " + newUser)
+  if (currUser!=null && newUser == null) {
     var newTransaction = {
       time: new Date(), 
       person: currUser,
-      itemPurchases : []
+      itemPurchases : [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
     };
-    transaction.push(newTransaction);
+    transactions.push(newTransaction);
+
+    var data = {};
+
+    data["ident"] = tempIDs[currUser];
+    data["items"] = newTransaction.itemPurchases;
+
+    // console.log(data.ident);
+    // console.log(data.items);
+    
+    Meteor.call("createTransaction", data, function (err, result) {
+      console.log(err);
+    });
+
+    currUser = newUser;
+  } else if (currUser!=newUser) {
+    currUser = newUser;
   }
 }, 1000);
 
@@ -84,7 +109,7 @@ Meteor.methods({
       totalAmount += itemCosts[data.items[i]];
     }
 
-    totalAmount = totalAmount.toString() + '.00';
+    totalAmount = totalAmount.toString();
 
     console.log(totalAmount);
     console.log((data.ident).toString());
