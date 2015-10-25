@@ -11,10 +11,12 @@ face_cascade = cv2.CascadeClassifier(cascade_path + 'haarcascade_frontalface_def
 
 def webcam_start(curr_person):
 	cap = cv2.VideoCapture(0)
-	for i in range(1000):
+	face_count = 0
+	while face_count <= 1000:
 		ret, frame = cap.read()
 		img, faces = find_face(frame)
 		write_faces(faces, curr_person)
+		face_count += len(faces)
 		cv2.imshow('frame', img)
 		if cv2.waitKey(1) & 0xFF == ord('q'):
 			break
@@ -32,7 +34,7 @@ def find_face(img):
 def write_faces(faces, curr_person):
 	for face in faces:
 		resized_face = cv2.resize(face, (150,150))
-		cv2.imwrite('people/'+curr_person+'/img_'+str(random.randint(1,1000))+'.jpg',
+		cv2.imwrite('people/'+curr_person+'/img_'+str(random.randint(1,10000))+'.jpg',
 		 resized_face)
 
 def train_and_save_model():
@@ -58,10 +60,10 @@ def test_and_train_sets(X,y):
 	Xshuffled = [X[i] for i in indices]
 	yshuffled = [y[i] for i in indices]
 
-	Xtrain = Xshuffled[0:len(X)/2]
-	Xtest = Xshuffled[len(X)/2:len(X)]
-	ytrain = yshuffled[0:len(y)/2]
-	ytest = yshuffled[len(y)/2:len(y)]	
+	Xtrain = Xshuffled[0:len(X)*9/10]
+	Xtest = Xshuffled[len(X)*9/10:len(X)]
+	ytrain = yshuffled[0:len(y)*9/10]
+	ytest = yshuffled[len(y)*9/10:len(y)]	
 
 	return Xtrain, Xtest, ytrain, ytest
 
