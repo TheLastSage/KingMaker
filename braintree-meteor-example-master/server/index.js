@@ -1,3 +1,17 @@
+Router.route('/inputStream', {where: 'server'})
+  .get(function () {
+    this.response.end('get request\n');
+  })
+  .post(function () {
+    console.log(this.request.body);
+    var passed = "failed";
+    Meteor.call('createTransaction', this.request.body, function (err, result) {
+      console.log(result.amount);
+    });
+    this.response.end(passed);
+  });
+
+var itemCosts = {"banana": 30, "apple": 20, "orange": 10};
 
 var gateway;
 
@@ -27,20 +41,29 @@ Meteor.methods({
   createTransaction: function (data) {
     var transaction = Meteor.wrapAsync(gateway.transaction.sale, gateway.transaction);
     // this is very naive, do not do this in production!
-    var amount = parseInt(data.quantity, 10) * 100;
+    var totalAmount = 0;
+    for (var i = 0; i < data.items.length; i++) {
+      totalAmount += itemCosts[data.items[i]];
+    }
+
+    totalAmount = totalAmount.toString() + '.00';
+
+    console.log(totalAmount);
+    console.log((data.ident).toString());
 
     var response = transaction({
-      amount: amount,
-      paymentMethodNonce: data.nonce,
-      customer: {
-        firstName: data.firstName
+      customerId: (data.ident).toString(),
+      amount: totalAmount,
+      options: {
+        submitForSettlement: true,
       }
+    }, function(err, result) {
     });
 
     // ...
     // perform a server side action with response
     // ...
-
+    console.log(response);
     return response;
   },
   createCustomer: function (data) {

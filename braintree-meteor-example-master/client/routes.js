@@ -10,14 +10,11 @@ Router.route('/confirmation', function () {
   name: 'confirmation'
 });
 
-Router.route('/inputStream')
-  .get(function () {
-	console.log("got correctly");
-  })
-  .post(function () {
-  	res.writeHead(200);
-    // this.response.end('input stream\n');
-	console.log(this.response);
-	console.log("got posted");
-	// handleNewInput(this.response.query);
-  })
+// Router.map(function() {
+// 	this.route('inputStream', {
+// 	where: 'server',
+// 	action: function () {
+// 		console.log(this.request.query);
+// 	}
+// });
+// });
