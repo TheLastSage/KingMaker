@@ -2,7 +2,6 @@ import numpy as np
 import cv2
 from IPython import embed
 import random
-import train_model
 import requests, time
 
 import cv_machine_learning as ml
@@ -13,9 +12,11 @@ cascade_path = "trained_classifiers/"
 
 face_cascade = cv2.CascadeClassifier(cascade_path + 'haarcascade_frontalface_default.xml')
 
-banana_cascade = cv2.CascadeClassifier(cascade_path + 'banana_classifier.xml')
+# banana_cascade = cv2.CascadeClassifier(cascade_path + 'banana_classifier.xml')
 
+# milk_cascade = cv2.CascadeClassifier(cascade_path + 'milk_classifier.xml')
 
+end_thread = False
 
 def main():
 	# img = cv2.imread('test.jpg')
@@ -64,6 +65,17 @@ def find_face(img):
 	# 		print('Found a banana')
 	# 	except:
 	# 		pass
+
+
+    # Bananas
+
+	# milks = milk_cascade.detectMultiScale(gray, 1.3, 5)
+	# for (x,y,w,h) in milks:
+	# 	img = cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 2)
+	# 	try:
+	# 		print('Found car')
+	# 	except:
+	# 		pass
 	return img, prediction
 	# cv2.imshow('img',img)
 	# cv2.waitKey(0)
@@ -96,15 +108,16 @@ def webcam_start():
 	        break
 
 	# When everything done, release the capture
+	end_thread = True
 	cap.release()
 	cv2.destroyAllWindows()
 
 def send_info():
 	time = curr_time()
 	global prediction
-	while True:
+	while not end_thread:
 		if prediction and curr_time() > time:
-			print(prediction)
+			# print(prediction)
 			time = curr_time()
 			r = requests.post("http://money2020.meteor.com/inputStream",
 			data = {"person": prediction[0]})	
