@@ -25,6 +25,14 @@ h1, h2, h3, h4, p {
 p {
   text-align: left;
 }
+
+#currCost {
+  font-size: 28px !important;
+  color: #2ec866 !important;
+  line-height: 14px !important;
+  margin-top: 5px !important;
+}
+
 .nav {
   top: 0;
   width: 100%;
@@ -231,12 +239,9 @@ p {
   z-index: 50;
 }
 li.item-li {
-  margin-left: 3px;
-}
-li.item-li:hover {
-  border-left: 3px solid #3d0099;
-  margin-left: 0px;
-  color: #3d0099;
+  height: 50px;
+  margin-top: 20px;
+
 }
 .item-elem {
   padding: 10px;

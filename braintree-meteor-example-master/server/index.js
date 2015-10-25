@@ -11,7 +11,7 @@ Router.route('/inputStream', {where: 'server'})
 
 var itemCosts = {"latte": 5.50, "banana": 1, "water bottle": 2, "cappucino": 3.75, "mocha": 4.20};
 var itemList = ["latte", "cappucino", "mocha"];
-var tempIDs = {"vignesh": 20681010, "yixin": 87630990};
+var tempIDs = {"vignesh": 20681010, "yixin": 87630990, "rishi": 40802030};
 
 // var transactions = {"Test1": ["latte"], "Test2": ["cappucino", "latte"]};
 
@@ -19,14 +19,14 @@ var gateway;
 
 var transactions = [
 
-  {
-    'person':'Joe',
-    'itemPurchases':['banana', 'water bottle']
-  },
-  {
-    'person':'Joe',
-    'itemPurchases':['banana', 'water bottle']
-  }
+  // {
+  //   'person':'Joe',
+  //   'itemPurchases':['banana', 'water bottle']
+  // },
+  // {
+  //   'person':'',
+  //   'itemPurchases':['banana', 'water bottle']
+  // }
 
 ];
 
@@ -107,10 +107,15 @@ Meteor.methods({
     var output = '';
     console.log("fdsf");
     for (i=transactions.length-1; i>=0; i--){
-      key = i;
-      console.log(key);
+      currCost = 0;
       output += '<li className="item-li"><div class="item"><div class="item-left item-elem"><p class="itemName">';
       output+=transactions[i]['person']; 
+      output+='</p></div><div class="item-right item-elem"><p class="itemCost" id="currCost">';
+      output+='+ $';
+      for (j=0; j<transactions[i]['itemPurchases'].length; j++) {
+        currCost = currCost + itemCosts[transactions[i]['itemPurchases'][j]];
+      }
+      output+=currCost.toString();
       output+='</p></div><div class="item-right item-elem"><p class="itemCost">';
       output+=transactions[i]['itemPurchases'];
       output+='</p></div></div></li>';
