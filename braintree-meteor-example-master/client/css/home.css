@@ -1,4 +1,7 @@
-/* CSS declarations go here */
+
+li {
+  list-style-type: none;
+}/* CSS declarations go here */
 * {
   font-family: Segoe UI Light, Segoe UI, Helvetica, sans-serif !important;
   padding: 0;
@@ -219,7 +222,7 @@ p {
   color: inherit;
 }
 .fullpage {
-  height: 390px;
+  min-height: 390px;
 }
 
 .item {

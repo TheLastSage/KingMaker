@@ -21,11 +21,11 @@ var transactions = [
 
   {
     'person':'Joe',
-    'itemList':['banana', 'water bottle']
+    'itemPurchases':['banana', 'water bottle']
   },
   {
     'person':'Joe',
-    'itemList':['banana', 'water bottle']
+    'itemPurchases':['banana', 'water bottle']
   }
 
 ];
@@ -69,34 +69,32 @@ Meteor.setInterval(function(){
     }
   } 
   var newUser = max;
-  // console.log("this is the new user: " + newUser)
-  if (currUser!=null && newUser == null) {
-    var newTransaction = {
-      time: new Date(), 
-      person: currUser,
-      itemPurchases : [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
-    };
-    console.log('New transaction is' + newTransaction);
-    transactions.push(newTransaction);
 
-    var data = {};
-
-    data["ident"] = tempIDs[currUser];
-    data["items"] = newTransaction.itemPurchases;
-
-    // console.log(data.ident);
-    // console.log(data.items);
-
-    Meteor.call("createTransaction", data, function (err, result) {
-      console.log(err);
-    });
-    Meteor.call("renderATransaction", data, function(err, result){
-      console.log(err);
-    });
-
+  console.log("The new user: " + newUser);
+  console.log("The curr user: " + currUser);
+  if (newUser == null) {
     currUser = newUser;
-  } else if (currUser!=newUser) {
+  } else if (currUser!=newUser && maxCount > 3) {
     currUser = newUser;
+    if (currUser != null && typeof newUser != 'undefined') {
+      var newTransaction = {
+        time: new Date(), 
+        person: currUser,
+        itemPurchases: [itemList[getRandomInt(0, 2)], itemList[getRandomInt(0, 2)]]
+      };
+      transactions.push(newTransaction);
+
+      var data = {};
+      data["ident"] = tempIDs[currUser];
+      data["items"] = newTransaction.itemPurchases;
+
+      console.log(data.ident);
+      console.log(data.items);
+
+      Meteor.call("createTransaction", data, function (err, result) {
+        console.log(err);
+      });
+    }
   }
 }, 1000);
 
@@ -108,13 +106,13 @@ Meteor.methods({
   renderTransactions: function(){
     var output = '';
     console.log("fdsf");
-    for (i=0; i<transactions.length; i++){
+    for (i=transactions.length-1; i>=0; i--){
       key = i;
       console.log(key);
       output += '<li className="item-li"><div class="item"><div class="item-left item-elem"><p class="itemName">';
       output+=transactions[i]['person']; 
       output+='</p></div><div class="item-right item-elem"><p class="itemCost">';
-      output+=transactions[i]['itemList'];
+      output+=transactions[i]['itemPurchases'];
       output+='</p></div></div></li>';
       // document.getElementById("tha-list").innerHTML+=output;
     };

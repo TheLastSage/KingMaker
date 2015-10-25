@@ -84,7 +84,21 @@ $('#transactionid').ready(function(){
       console.log(result);
       console.log(stuff);
       $( '#tha-list' ).html( $( '#tha-list' ).html() + result);
-      document.getElementById("tha-list").innerHtml += result;
+      // document.getElementById("tha-list").innerHtml += result;
     }
   });
 });
+
+setInterval( function(){  // updates every one second
+  console.log('temp.trans.render')
+  var stuff = Meteor.call('renderTransactions', function (err, result){
+    if (err) console.log(err);
+    if (result || stuff) {
+      console.log("result");
+      console.log(result);
+      console.log(stuff);
+      $( '#tha-list' ).html( result);
+      // document.getElementById("tha-list").innerHtml += result;
+    }
+  });
+}, 1000);
